@@ -25,5 +25,16 @@ deployment "learn-terraform-stacks-migrate-robin" {
   }
 }
 
+deployment "learn-terraform-stacks-migrate-test" {
+  inputs = {
+    access_key    = store.varset.credentials.AWS_ACCESS_KEY_ID
+    secret_key    = store.varset.credentials.AWS_SECRET_ACCESS_KEY
+    session_token = store.varset.credentials.AWS_SESSION_TOKEN
 
-
+    aws_region      = "us-west-2"
+    vpc_name        = "learn-stacks-vpc-test"
+    vpc_cidr        = "10.0.0.0/16"
+    private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+    public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
+  }
+}
